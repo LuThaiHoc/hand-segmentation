@@ -21,7 +21,7 @@ def getRotateAngle(pts, img):
     data_pts = np.empty((sz, 2), dtype=np.float64)
     for i in range(data_pts.shape[0]):
         data_pts[i,0] = pts[i,0,0]
-        data_pts[i,1] = pts[i,0,1] sss
+        data_pts[i,1] = pts[i,0,1]
     # Perform PCA analysis
     mean = np.empty((0))
     mean, eigenvectors, eigenvalues = cv2.PCACompute2(data_pts, mean)
