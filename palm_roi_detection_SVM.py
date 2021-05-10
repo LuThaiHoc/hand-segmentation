@@ -386,10 +386,13 @@ class PalmROIDetectionSVM:
                 to_show[forarm_mask > 127] = (255,255,0)
                 cv2.imshow('forarm_mask', forarm_mask)
             cv2.imshow('detect', to_show)
-            
+            cv2.imshow('orginal mask', img)
             print('FPS: ', 1/(time.time()-t))
-            if cv2.waitKey(1) == 27:
+            key = cv2.waitKey(1)
+            if key == 27:
                 break
+            if key == ord('p'):
+                cv2.waitKey(0)
 
     def test_one_image(self, image_path, aplha = 1.3):
         img = cv2.imread(image_path, 0)
@@ -442,7 +445,8 @@ def label_data(clf):
 
 
 if __name__ == "__main__":
-    pass
+    clf = PalmROIDetectionSVM()
+    clf.prepare_data_set('data_left_hand/', 'test.txt')
     
     
 

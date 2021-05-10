@@ -6,8 +6,8 @@ def demo_handsegment_method():
     full_mask = cv2.resize(full_mask, (640,480))
     from utils import hand_mask_segmentation_choose_max_roi
     from wrist_line import detectHandByWristCrop
-    # hand_mask, forearm_mask = hand_mask_segmentation_choose_max_roi(full_mask, 1.3)
-    hand_mask, forearm_mask = detectHandByWristCrop(full_mask)
+    hand_mask, forearm_mask = hand_mask_segmentation_choose_max_roi(full_mask, 1.3)
+    # hand_mask, forearm_mask = detectHandByWristCrop(full_mask)
     
 
     to_show = np.zeros((full_mask.shape[0], full_mask.shape[1], 3), dtype=np.uint8)
@@ -160,12 +160,12 @@ if __name__ == "__main__":
     clf = PalmROIDetectionSVM(image_size = (640,480), dimension_extract = 30, min_size_hand = 15)
     clf.dimension_extract = 30
     clf.load_model('models/left_30.pkl')
-
+    clf.test_images('data_left_hand')
     # for img_name in os.listdir('bad_case_demo/org/'):
     #     demo_images(img_name)
 
     # evaluate_segment(clf)
 
     # train_and_evalue_model(clf)
-
+    # demo_images('4_024.png')
     # demo_handsegment_method()
