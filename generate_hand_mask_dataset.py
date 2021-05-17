@@ -113,15 +113,15 @@ image_names = glob.glob(full_hand_mask_dir)
 # image_names = ['data_right_hand/47_017_1.png']
 
 total = len(image_names)
-i = 0
-for file_name in image_names:
+
+for i, file_name in enumerate(image_names):
     print(file_name)
+    print('file: %s\tTotal %d/%d' %(file_name,i, total))
     # set the mouse settin function
     file_name = file_name.strip('\r\n')
     if not os.path.isfile(file_name):
         i += 1
         print('no file named %s , next' % file_name)
-        print('Total %d/%d' %(i, total))
     img = cv2.imread(file_name, 0)
     mask = img > 100
     mask = 255*mask.astype('uint8')
@@ -131,7 +131,7 @@ for file_name in image_names:
         continue
     # org_path = org_image_dir + os.path.splitext(os.path.basename(file_name))[0][:-2] + '.png' #bo di _x vd: 1_000_1.png -> 1_001.png
     org_path = org_image_dir + os.path.splitext(os.path.basename(file_name))[0] + '.png'
-    print('org_path: ', org_path)
+    # print('org_path: ', org_path)
     # print('number point: ', len(list_points_cp))
     if os.path.isfile(org_path):
         org_img = cv2.imread(org_path)
@@ -184,13 +184,9 @@ for file_name in image_names:
                     f.write(os.path.basename(file_name) +
                             '-' + str(lb_points) + '\n')
                     f.close
-                i += 1
-                print('Total %d/%d' %(i, total))
                 break
         if key == 27:
-            i += 1
             print('skip this image')
-            print('Total %d/%d' %(i, total))
             break
 
     lb_points.clear()
