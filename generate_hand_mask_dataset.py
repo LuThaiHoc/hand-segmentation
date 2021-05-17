@@ -4,6 +4,32 @@ import glob
 import os
 
 
+###########################Gan nhan tay trai###########################
+log_file = 'mask_polygon_labeled_full/log/left_seg_log.txt'
+
+hand_label_mask_dir = 'mask_polygon_labeled_full/left_hand_labels/'
+forearm_label_mask_dir = 'mask_polygon_labeled_full/left_forearm_labels/'
+org_image_dir = '../Hand_data_labeled_full/'
+full_hand_mask_dir = 'mask_polygon_labeled_full/left/*.png'
+#########################################################################
+
+
+################################gan nhan tay phai######################
+# log_file = 'mask_polygon_labeled_full/log/right_seg_log.txt'
+# # choose_file = 'mask_polygon_labeled_full/log/right_data_file_labeled.txt'
+
+# hand_label_mask_dir = 'mask_polygon_labeled_full/right_hand_labels/'
+# forearm_label_mask_dir = 'mask_polygon_labeled_full/right_forearm_labels/'
+# org_image_dir = '../Hand_data_labeled_full/'
+# full_hand_mask_dir = 'mask_polygon_labeled_full/right/*.png'
+########################################################################
+
+
+def check_contours_exist(maks):
+    contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    return len(contours) > 0
+
+
 def segment_mask_by_point(mask, list_point, org_image):
     mask_cp = np.copy(mask)
     cv2.line(mask_cp, lb_points[0], lb_points[1], 0, 2)
@@ -64,14 +90,6 @@ def capture_event(event, x, y, flags, params):
             lb_points.append((x, y))
         print('add point: ', (x, y), 'num: ', len(lb_points))
 
-
-log_file = 'right_seg_log.txt'
-choose_file = 'choosed_data_file_name/f_right_data_file_500.txt'
-hand_label_mask_dir = 'right_hand_labels/'
-forearm_label_mask_dir = 'right_forearm_labels/'
-org_image_dir = '../Hand_data_labeled_full/'
-full_hand_mask_dir = 'data_right_hand/*.png'
-
 if not os.path.isdir(hand_label_mask_dir):
     os.makedirs(hand_label_mask_dir)
 if not os.path.isdir(forearm_label_mask_dir):
@@ -108,7 +126,12 @@ for file_name in image_names:
     mask = img > 100
     mask = 255*mask.astype('uint8')
 
-    org_path = org_image_dir + os.path.splitext(os.path.basename(file_name))[0][:-2] + '.png'
+    if not check_contours_exist(mask):
+        print('no mask, skip image!')
+        continue
+    # org_path = org_image_dir + os.path.splitext(os.path.basename(file_name))[0][:-2] + '.png' #bo di _x vd: 1_000_1.png -> 1_001.png
+    org_path = org_image_dir + os.path.splitext(os.path.basename(file_name))[0] + '.png'
+    print('org_path: ', org_path)
     # print('number point: ', len(list_points_cp))
     if os.path.isfile(org_path):
         org_img = cv2.imread(org_path)
