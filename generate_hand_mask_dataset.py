@@ -69,7 +69,7 @@ log_file = 'right_seg_log.txt'
 choose_file = 'choosed_data_file_name/f_right_data_file_500.txt'
 hand_label_mask_dir = 'right_hand_labels/'
 forearm_label_mask_dir = 'right_forearm_labels/'
-org_image_dir = 'Hand_data_labeled_full/'
+org_image_dir = '../Hand_data_labeled_full/'
 
 if not os.path.isdir(hand_label_mask_dir):
     os.makedirs(hand_label_mask_dir)
