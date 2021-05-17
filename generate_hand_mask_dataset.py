@@ -5,23 +5,23 @@ import os
 
 
 ###########################Gan nhan tay trai###########################
-log_file = 'mask_polygon_labeled_full/log/left_seg_log.txt'
+# log_file = 'mask_polygon_labeled_full/log/left_seg_log.txt'
 
-hand_label_mask_dir = 'mask_polygon_labeled_full/left_hand_labels/'
-forearm_label_mask_dir = 'mask_polygon_labeled_full/left_forearm_labels/'
-org_image_dir = '../Hand_data_labeled_full/'
-full_hand_mask_dir = 'mask_polygon_labeled_full/left/*.png'
+# hand_label_mask_dir = 'mask_polygon_labeled_full/left_hand_labels/'
+# forearm_label_mask_dir = 'mask_polygon_labeled_full/left_forearm_labels/'
+# org_image_dir = '../Hand_data_labeled_full/'
+# full_hand_mask_dir = 'mask_polygon_labeled_full/left/*.png'
 #########################################################################
 
 
 ################################gan nhan tay phai######################
-# log_file = 'mask_polygon_labeled_full/log/right_seg_log.txt'
-# # choose_file = 'mask_polygon_labeled_full/log/right_data_file_labeled.txt'
+log_file = 'mask_polygon_labeled_full/log/right_seg_log.txt'
+# choose_file = 'mask_polygon_labeled_full/log/right_data_file_labeled.txt'
 
-# hand_label_mask_dir = 'mask_polygon_labeled_full/right_hand_labels/'
-# forearm_label_mask_dir = 'mask_polygon_labeled_full/right_forearm_labels/'
-# org_image_dir = '../Hand_data_labeled_full/'
-# full_hand_mask_dir = 'mask_polygon_labeled_full/right/*.png'
+hand_label_mask_dir = 'mask_polygon_labeled_full/right_hand_labels/'
+forearm_label_mask_dir = 'mask_polygon_labeled_full/right_forearm_labels/'
+org_image_dir = '../Hand_data_labeled_full/'
+full_hand_mask_dir = 'mask_polygon_labeled_full/right/*.png'
 ########################################################################
 
 
@@ -189,5 +189,5 @@ for i, file_name in enumerate(image_names):
             print('skip this image')
             break
 
-    lb_points.clear()
+    # lb_points.clear()
 
