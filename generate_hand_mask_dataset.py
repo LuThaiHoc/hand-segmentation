@@ -14,7 +14,7 @@ def segment_mask_by_point(mask, list_point, org_image):
     forearm_mask = np.zeros(mask.shape, dtype=np.uint8)
 
     cnts = sorted(cnts, key=lambda x: cv2.contourArea(x))
-    cnts.reverse()
+    cnts.reverse() 
 
     if len(cnts) == 0:
         print('no contours found!...')
@@ -70,6 +70,7 @@ choose_file = 'choosed_data_file_name/f_right_data_file_500.txt'
 hand_label_mask_dir = 'right_hand_labels/'
 forearm_label_mask_dir = 'right_forearm_labels/'
 org_image_dir = '../Hand_data_labeled_full/'
+full_hand_mask_dir = 'data_right_hand/*.png'
 
 if not os.path.isdir(hand_label_mask_dir):
     os.makedirs(hand_label_mask_dir)
@@ -90,7 +91,7 @@ cv2.setMouseCallback(window_name, capture_event)
 
 # with open(choose_file, 'r') as f:
     # image_names = f.readlines()
-image_names = glob.glob('data_right_hand/*.png')
+image_names = glob.glob(full_hand_mask_dir)
 # image_names = ['data_right_hand/47_017_1.png']
 
 total = len(image_names)
