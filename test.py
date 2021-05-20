@@ -27,12 +27,16 @@ print(len(list_img))
 print(count)
 '''
 
-import os
+# import os
 
-for name in os.listdir('labels/right_hand_labels/'):
-    with open('file_mask_label_segmentation_RIGHT.txt', 'a') as f:
-        f.write(name + '\n')
+# for name in os.listdir('labels/right_hand_labels/'):
+#     with open('file_mask_label_segmentation_RIGHT.txt', 'a') as f:
+#         f.write(name + '\n')
 
-for name in os.listdir('labels/left_hand_labels/'):
-    with open('file_mask_label_segmentation_LETF.txt', 'a') as f:
-        f.write(name + '\n')
+# for name in os.listdir('labels/left_hand_labels/'):
+#     with open('file_mask_label_segmentation_LETF.txt', 'a') as f:
+#         f.write(name + '\n')
+import cv2
+
+cv2.imread('aa', )
+print(cv2.IMREAD_ANYDEPTH)
