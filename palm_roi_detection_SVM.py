@@ -361,7 +361,7 @@ class PalmROIDetectionSVM:
     def test_images(self, dir_folder):
         img_test_name = glob.glob(dir_folder + '/*.png')
         for name in img_test_name:
-            # print(name)
+            print(name)
             t = time.time()
             img = cv2.imread(name, 0)
             img = cv2.resize(img, (640,480))
@@ -387,8 +387,8 @@ class PalmROIDetectionSVM:
                 cv2.imshow('forarm_mask', forarm_mask)
             cv2.imshow('detect', to_show)
             cv2.imshow('orginal mask', img)
-            print('FPS: ', 1/(time.time()-t))
-            key = cv2.waitKey(1)
+            # print('FPS: ', 1/(time.time()-t))
+            key = cv2.waitKey(0)
             if key == 27:
                 break
             if key == ord('p'):
@@ -421,7 +421,7 @@ class PalmROIDetectionSVM:
        
         # cv2.imshow('detect', to_show)
         # cv2.waitKey(0)
-        return to_show
+        return to_show, hand_mask, forarm_mask
 
 def label_data(clf):
     ## Click select palm ROI to prepare dataset ######################################################
@@ -449,4 +449,3 @@ if __name__ == "__main__":
     clf.prepare_data_set('data_left_hand/', 'test.txt')
     
     
-

@@ -125,6 +125,7 @@ for i, file_name in enumerate(image_names):
     img = cv2.imread(file_name, 0)
     mask = img > 100
     mask = 255*mask.astype('uint8')
+    print('shapeepe: ', mask.shape)
 
     if not check_contours_exist(mask):
         print('no mask, skip image!')
